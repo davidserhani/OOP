@@ -1,10 +1,21 @@
 <?php
     class Run {
         private $track;
-        private $laps;
-        private $players;
-        private $ranking;
+        private $lap;
+        private $players = array();
+        private $ranking = array();
 
-        function simulate() {}
-        function ranking() {}
+        public function __construct( $track, $lap = 3 )
+        {
+            $this->track = $track;
+            $this->lap = $lap;
+        }
+
+        public function simulate() {}
+        private function showRanking() {}
+
+        public function addPlayer( Player $player ) {
+            $this->players[] = $player;
+        }
+
     }
