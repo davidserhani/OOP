@@ -50,4 +50,10 @@
         public function setColor( $color ) {
             $this->color = $color;
         }
+        public function getWeight() {
+            return $this->weight;
+        }
+        public function getModel() {
+            return $this->model;
+        }
     }
