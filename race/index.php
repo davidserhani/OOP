@@ -14,5 +14,5 @@ $gameOne = new Run('Monza');
 $gameOne->addPlayer( $playerOne );
 $gameOne->addPlayer( $playerTwo );
 
-var_dump( $gameOne );
+print_r( $gameOne );
 $gameOne->simulate();
