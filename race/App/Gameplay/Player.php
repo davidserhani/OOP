@@ -1,7 +1,7 @@
 <?php
-namespace app\Gameplay;
+namespace App\Gameplay;
 
-use app\Vehicles\Vehicle;
+use App\Vehicles\Vehicle;
 
     final class Player {
         private $username;

@@ -1,5 +1,5 @@
 <?php
-namespace app\Vehicles;
+namespace App\Vehicles;
     class Car extends Vehicle {
 
         public function powerUp() {

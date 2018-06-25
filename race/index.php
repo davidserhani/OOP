@@ -1,15 +1,15 @@
 <?php
 
-require_once 'app/Autoloader.php';
-use app\Autoloader;
-Autoloader::register();
+require_once 'App/Autoloader.php';
+App\Autoloader::register();
 
-use app\Vehicles\Vehicle;
-use app\Vehicles\Bike;
-use app\Vehicles\Car;
-use app\Vehicles\Skate;
-use app\Gameplay\Player;
-use app\Gameplay\Run;
+
+use App\Vehicles\Vehicle;
+use App\Vehicles\Bike;
+use App\Vehicles\Car;
+use App\Vehicles\Skate;
+use App\Gameplay\Player;
+use App\Gameplay\Run;
 
 
 $yamaha = new Bike('black', 2, Vehicle::LIGHT_WEIGHT, 'tmax');

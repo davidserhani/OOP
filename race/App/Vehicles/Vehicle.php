@@ -1,5 +1,5 @@
 <?php
-    namespace app\Vehicles;
+    namespace App\Vehicles;
     abstract class Vehicle {
         const LIGHT_WEIGHT = 1;
         const MIDDLEWEIGHT = 2;

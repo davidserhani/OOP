@@ -1,6 +1,6 @@
 <?php
-namespace app\Vehicles;
-    class Skate extends Vehicle {
+namespace App\Vehicles;
+    class Bike extends Vehicle {
 
         public function powerUp() {
             echo 'Bonus';
