@@ -1,12 +1,21 @@
 <?php
-require 'Player.php';
-require 'Run.php';
-require 'Vehicle.php';
 
-$yamaha = new Vehicle('black', 2, 1, 'tmax');
-$porsche = new Vehicle('blue', 4, 2, '911');
-$ferrari = new Vehicle('blue', 4, 3, 'LaFerrari');
-$lambo = new Vehicle('blue', 4, 3, 'Aventador');
+require_once 'app/Autoloader.php';
+use app\Autoloader;
+Autoloader::register();
+
+use app\Vehicles\Vehicle;
+use app\Vehicles\Bike;
+use app\Vehicles\Car;
+use app\Vehicles\Skate;
+use app\Gameplay\Player;
+use app\Gameplay\Run;
+
+
+$yamaha = new Bike('black', 2, Vehicle::LIGHT_WEIGHT, 'tmax');
+$porsche = new Car('blue', 4, Vehicle::HEAVYWEIGHT, '911');
+$ferrari = new Car('blue', 4, Vehicle::MIDDLEWEIGHT, 'LaFerrari');
+$lambo = new Skate('blue', 4, Vehicle::LIGHT_WEIGHT, 'Skate');
 
 $playerOne = new Player('Schumi', 'us', $yamaha);
 $playerTwo = new Player('Loeb', 'fr', $porsche);
@@ -14,16 +23,22 @@ $playerThree = new Player('Flash', 'us', $lambo);
 $playerFour = new Player('Boruto', 'fr', $ferrari);
 
 $gameOne = new Run('Monza');
-
 $gameOne->addPlayer( $playerOne );
 $gameOne->addPlayer( $playerTwo );
 $gameOne->addPlayer( $playerThree );
-$gameOne->addPlayer( $playerFour );
-?>
-<!--<pre>-->
-<?php
-//print_r( $gameOne );
-//?>
-<!--</pre>-->
-<?php
+//$gameOne->addPlayer( $playerFour );
 $gameOne->simulate();
+
+$gameTwo = Run::generateRun();
+$gameTwo->addPlayer( $playerOne );
+$gameTwo->addPlayer( $playerTwo );
+//$gameTwo->addPlayer( $playerThree );
+//$gameTwo->addPlayer( $playerFour );
+$gameTwo->simulate();
+
+$gameThree = Run::generateRun();
+$gameThree->addPlayer( $playerOne );
+$gameThree->addPlayer( $playerTwo );
+$gameThree->addPlayer( $playerThree );
+$gameThree->addPlayer( $playerFour );
+$gameThree->simulate();

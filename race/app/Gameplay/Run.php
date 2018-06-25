@@ -1,9 +1,14 @@
 <?php
+namespace app\Gameplay;
+
+use app\Vehicles\Vehicle;
+
     class Run {
         private $track;
         private $lap;
         private $players = array();
         private $ranking = array();
+        private static $tracks = ['Prairie Meuh Meuh', 'Circuit Yoshi', 'Route Arc-en-ciel', 'Manoir trempé'];
 
         public function __construct( $track, $lap = 3 )
         {
@@ -23,16 +28,17 @@
                 ];
             }
             $this->sortRanking();
+            $this->updatePlayers();
             $this->showRanking();
         }
         private function generatePos( Player $player ) {
             $poids = $player->getVehicle()->getWeight();
             $max = 100 * $poids;
             switch ($poids) {
-                case 1:
+                case Vehicle::LIGHT_WEIGHT:
                     $max += (10 * $this->lap);
                     break;
-                case 3:
+                case Vehicle::HEAVYWEIGHT:
                     $max -= (10 * $this->lap);
             }
             return rand(1, $max);
@@ -48,6 +54,7 @@
                 return false;
             }
         }
+
         private function sortRanking() {
             usort( $this->ranking, function ( $a, $b ) {
                 if ( $a['failed'] === true ) {
@@ -60,13 +67,26 @@
 //            var_dump($this->ranking);
 //           array_multisort($this->ranking[0]['position'], SORT_NUMERIC, SORT_ASC);
         }
+
+        private function updatePlayers(){
+            $points = count( $this->ranking );
+            foreach ( $this->ranking as $index => $rank ) {
+                if ( $index == 0 ) {
+                    $rank['player']->levelUp();
+                }
+                $rank['player']->updateScore( $points );
+                $points--;
+            }
+        }
         private function showRanking() {
 
             echo 'Grand Prix de ' .$this->track. '<br />';
+            echo count( $this->players ). ' participants et '. (Player::getCounter() - count( $this->players )). ' spectateurs.<br />';
             echo  'Classement général : <br />';
             foreach ( $this->ranking as $index => $rank ) {
                 if ( $rank['failed'] === false ) {
                   echo '#' .($index + 1). '-' .$rank['player']->getUsername(). '<br />';
+                  echo '(Niveau : ' .$rank['player']->getLevel(). ' Score : ' .$rank['player']->getScore(). ')<br />';
                 } else {
                     echo $rank['player']->getUsername(). ' : abandon <br />';
                 }
@@ -75,6 +95,12 @@
 //                var_dump($rank['position']);
 
             }
+        }
+
+        public static function generateRun() {
+            $randomTrack = array_rand( self::$tracks );
+            $laps = rand( 1, 10 );
+            return new Run( self::$tracks[ $randomTrack ], $laps);
         }
 
         public function addPlayer( Player $player ) {

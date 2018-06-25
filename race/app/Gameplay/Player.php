@@ -1,16 +1,26 @@
 <?php
-    class Player {
+namespace app\Gameplay;
+
+use app\Vehicles\Vehicle;
+
+    final class Player {
         private $username;
         private $country;
         private $vehicle;
         private $level = 0;
         private $score = 0;
+        private static $counter = 0;
 
         public function __construct( $username, $country, Vehicle $vehicle )
         {
             $this->username = $username;
             $this->country = $country;
             $this->vehicle = $vehicle;
+            self::$counter++;
+        }
+
+        public static function getCounter() {
+            return self::$counter;
         }
 
         public function levelUp() {

@@ -1,5 +1,10 @@
 <?php
-    class Vehicle {
+    namespace app\Vehicles;
+    abstract class Vehicle {
+        const LIGHT_WEIGHT = 1;
+        const MIDDLEWEIGHT = 2;
+        const HEAVYWEIGHT = 3;
+
         private $engine = false;
         private $speed = 0;
         private $color;
@@ -16,6 +21,8 @@
             $this->setWeight( $weight );
             $this->model = $model;
         }
+
+        abstract public function powerUp();
 
         private function setWeight( $weight ) {
             if ( is_int( $weight ) ) {
