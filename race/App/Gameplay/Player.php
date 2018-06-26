@@ -44,4 +44,7 @@ use App\Vehicles\Vehicle;
         public function getVehicle() {
             return $this->vehicle;
         }
+
+
+
     }

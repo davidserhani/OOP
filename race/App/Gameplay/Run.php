@@ -2,13 +2,14 @@
 namespace App\Gameplay;
 
 use App\Vehicles\Vehicle;
+use App\Entity\Track;
 
     class Run {
         private $track;
         private $lap;
         private $players = array();
         private $ranking = array();
-        private static $tracks = ['Prairie Meuh Meuh', 'Circuit Yoshi', 'Route Arc-en-ciel', 'Manoir trempé'];
+//        private static $tracks = ['Prairie Meuh Meuh', 'Circuit Yoshi', 'Route Arc-en-ciel', 'Manoir trempé'];
 
         public function __construct( $track, $lap = 3 )
         {
@@ -98,9 +99,9 @@ use App\Vehicles\Vehicle;
         }
 
         public static function generateRun() {
-            $randomTrack = array_rand( self::$tracks );
+            $track = Track::getRandomTrack();
             $laps = rand( 1, 10 );
-            return new Run( self::$tracks[ $randomTrack ], $laps);
+            return new Run( $track->getName(), $laps);
         }
 
         public function addPlayer( Player $player ) {

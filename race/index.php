@@ -9,8 +9,10 @@ use App\Vehicles\Bike;
 use App\Vehicles\Car;
 use App\Vehicles\Skate;
 use App\Gameplay\Player;
+use App\Entity\Track;
 use App\Gameplay\Run;
 
+Track::prepare();
 
 $yamaha = new Bike('black', 2, Vehicle::LIGHT_WEIGHT, 'tmax');
 $porsche = new Car('blue', 4, Vehicle::HEAVYWEIGHT, '911');
