@@ -1,9 +1,8 @@
 <?php
     namespace App\Entity;
-
     use PDO;
 
-    class Track {
+    class Track implements Entity {
         private static $db;
         private $id;
         private $name;

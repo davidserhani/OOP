@@ -1,6 +1,10 @@
 <?php
     namespace App\Vehicles;
+    use App\Gameplay\PowerUP;
+
     abstract class Vehicle {
+        use PowerUP;
+
         const LIGHT_WEIGHT = 1;
         const MIDDLEWEIGHT = 2;
         const HEAVYWEIGHT = 3;

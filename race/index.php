@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once 'App/Autoloader.php';
 App\Autoloader::register();
@@ -19,7 +20,10 @@ $porsche = new Car('blue', 4, Vehicle::HEAVYWEIGHT, '911');
 $ferrari = new Car('blue', 4, Vehicle::MIDDLEWEIGHT, 'LaFerrari');
 $lambo = new Skate('blue', 4, Vehicle::LIGHT_WEIGHT, 'Skate');
 
-$playerOne = new Player('Schumi', 'us', $yamaha);
+$playerOne = Player::restoreSession( $yamaha );
+if ( empty($playerOne) ){
+    $playerOne = new Player('Schumi', 'us', $yamaha);
+}
 $playerTwo = new Player('Loeb', 'fr', $porsche);
 $playerThree = new Player('Flash', 'us', $lambo);
 $playerFour = new Player('Boruto', 'fr', $ferrari);
@@ -44,3 +48,5 @@ $gameThree->addPlayer( $playerTwo );
 $gameThree->addPlayer( $playerThree );
 $gameThree->addPlayer( $playerFour );
 $gameThree->simulate();
+
+Player::sessionSave( $playerOne );

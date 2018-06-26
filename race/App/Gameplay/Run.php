@@ -4,7 +4,7 @@ namespace App\Gameplay;
 use App\Vehicles\Vehicle;
 use App\Entity\Track;
 
-    class Run {
+    class Run implements \Countable {
         private $track;
         private $lap;
         private $players = array();
@@ -82,7 +82,7 @@ use App\Entity\Track;
         private function showRanking() {
 
             echo 'Grand Prix de ' .$this->track. '<br />';
-            echo count( $this->players ). ' participants et '. (Player::getCounter() - count( $this->players )). ' spectateurs.<br />';
+            echo count( $this ). ' participants et '. (Player::getCounter() - count( $this->players )). ' spectateurs.<br />';
             echo  'Classement général : <br />';
             foreach ( $this->ranking as $index => $rank ) {
                 if ( $rank['failed'] === false ) {
@@ -107,4 +107,10 @@ use App\Entity\Track;
         public function addPlayer( Player $player ) {
             $this->players[] = $player;
         }
-    }
+
+        public function count()
+        {
+            return count( $this->players );
+        }
+
+}
