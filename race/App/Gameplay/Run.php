@@ -82,7 +82,7 @@ use App\Entity\Track;
         private function showRanking() {
 
             echo 'Grand Prix de ' .$this->track. '<br />';
-            echo count( $this ). ' participants et '. (Player::getCounter() - count( $this->players )). ' spectateurs.<br />';
+            echo count( $this ). ' participants et '. (Player::getCounter() - count( $this )). ' spectateurs.<br />';
             echo  'Classement général : <br />';
             foreach ( $this->ranking as $index => $rank ) {
                 if ( $rank['failed'] === false ) {

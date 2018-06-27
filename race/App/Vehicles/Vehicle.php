@@ -1,5 +1,6 @@
 <?php
     namespace App\Vehicles;
+
     use App\Gameplay\PowerUP;
 
     abstract class Vehicle {

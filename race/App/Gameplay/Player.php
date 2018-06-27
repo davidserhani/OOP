@@ -4,6 +4,8 @@ namespace App\Gameplay;
 use App\Vehicles\Vehicle;
 
     final class Player {
+        use PowerUP;
+
         private $username;
         private $country;
         private $vehicle;

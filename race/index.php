@@ -20,6 +20,8 @@ $porsche = new Car('blue', 4, Vehicle::HEAVYWEIGHT, '911');
 $ferrari = new Car('blue', 4, Vehicle::MIDDLEWEIGHT, 'LaFerrari');
 $lambo = new Skate('blue', 4, Vehicle::LIGHT_WEIGHT, 'Skate');
 
+$yamaha->addBonus();
+echo $yamaha->getBonus(). '<br />';
 $playerOne = Player::restoreSession( $yamaha );
 if ( empty($playerOne) ){
     $playerOne = new Player('Schumi', 'us', $yamaha);
